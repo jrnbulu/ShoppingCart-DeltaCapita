@@ -34,18 +34,22 @@ public class ShoppingKartServce {
     }
     public void addToKart(Item item)
     {
+        if(item.getItemName().isBlank())return;
         List<Item> items = userShoppingKart.getKart().get(item.getItemName());
         if(null == items) {
             items = new ArrayList<>();
             userShoppingKart.getKart().put(item.getItemName(),items);
         }
-        StaticInventory.inventoryMap.get(item.getItemName()).remove(item);
+        if(null != StaticInventory.inventoryMap.get(item.getItemName()))
+            StaticInventory.inventoryMap.get(item.getItemName()).remove(item);
         userShoppingKart.getKart().get(item.getItemName()).add(item);
     }
     public void removeFromKart(Item item)
     {
-        userShoppingKart.getKart().get(item.getItemName()).remove(item);
-        StaticInventory.inventoryMap.get(item.getItemName()).add(item);
+        if(null !=userShoppingKart.getKart().get(item.getItemName()))
+            userShoppingKart.getKart().get(item.getItemName()).remove(item);
+        if(null != StaticInventory.inventoryMap.get(item.getItemName()))
+            StaticInventory.inventoryMap.get(item.getItemName()).add(item);
     }
     public BigDecimal getKartValue()
     {

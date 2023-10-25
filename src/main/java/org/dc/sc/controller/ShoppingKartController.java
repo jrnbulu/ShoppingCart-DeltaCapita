@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/shoppingkart")
-public class ShoppingkartController {
+public class ShoppingKartController {
     private final ShoppingKartServce shoppingKartServce;
     @GetMapping("/allitems")
     public ResponseEntity<Map<String, List<Item>>> getAllItems()
